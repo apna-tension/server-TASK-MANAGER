@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const auth = require("./routes/auth");
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000
 
 
 // Connect to MongoDB
@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use("/api/auth", auth);
 
 app.get("/", (req, res) => {
-  res.send("Hello, the bussy World!");
+  res.send("Hello, World!");
 });
 
 app.listen(port, () => {
