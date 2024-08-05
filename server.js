@@ -1,9 +1,13 @@
 // initialise dotenv
-require("dotenv").config();
+const dotenv = require("dotenv");
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const auth = require("./routes/auth");
+const todo = require("./routes/todo");
+const cors = require("cors");
+
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5000
@@ -17,9 +21,11 @@ mongoose
 
 // Middleware
 app.use(bodyParser.json());
+app.use(cors());
 
 // Routes
 app.use("/api/auth", auth);
+app.use("/api/todo", todo);
 
 app.get("/", (req, res) => {
   res.send("Hello, World!");
