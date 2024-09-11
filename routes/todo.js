@@ -8,8 +8,10 @@ const router = express.Router();
 router.get('/', protect, async (req, res) => {
   try {
     const todos = await ToDo.find({ _id: { $in: req.user.todos } });
+    console.log("data fatched successfully");
     res.json(todos);
   } catch (err) {
+    console.log(err);
     console.error(err.message);
     res.status(500).send('Server error');
   }
